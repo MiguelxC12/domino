@@ -1,0 +1,2061 @@
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  background:
+    #06101e;
+
+  color:
+    #f8fafc;
+
+  overflow-x:
+    hidden;
+}
+
+button,
+input,
+select {
+  font:
+    inherit;
+}
+
+
+/* =========================================================
+   COLORES
+========================================================= */
+
+:root {
+
+  --bg:
+    #06101e;
+
+  --panel:
+    #0e1d30;
+
+  --panel2:
+    #12243a;
+
+  --border:
+    #29425f;
+
+  --text:
+    #f8fafc;
+
+  --muted:
+    #91a5bb;
+
+  --gold:
+    #f5c542;
+
+  --green:
+    #22c55e;
+
+  --red:
+    #ef4444;
+
+
+  /*
+     COLOR FIJO DE CADA NÚMERO
+
+     2 SIEMPRE AZUL.
+  */
+
+  --number-0:
+    #64748b;
+
+  --number-1:
+    #ef4444;
+
+  --number-2:
+    #2196f3;
+
+  --number-3:
+    #22c55e;
+
+  --number-4:
+    #eab308;
+
+  --number-5:
+    #a855f7;
+
+  --number-6:
+    #f97316;
+
+  --number-7:
+    #06b6d4;
+
+  --number-8:
+    #ec4899;
+
+  --number-9:
+    #84cc16;
+}
+
+
+/* =========================================================
+   PANTALLAS
+========================================================= */
+
+.screen {
+  display: none;
+
+  min-height:
+    100vh;
+
+  width:
+    100%;
+}
+
+.screen.active {
+  display: block;
+}
+
+
+/* =========================================================
+   BOTONES
+========================================================= */
+
+button {
+  border: 1px solid var(--border);
+
+  background:
+    #172b43;
+
+  color:
+    var(--text);
+
+  border-radius:
+    10px;
+
+  padding:
+    10px 15px;
+
+  cursor:
+    pointer;
+
+  transition:
+    .18s ease;
+}
+
+button:hover:not(:disabled) {
+  background:
+    #213b5b;
+
+  transform:
+    translateY(-1px);
+}
+
+button:disabled {
+  opacity:
+    .4;
+
+  cursor:
+    not-allowed;
+}
+
+button.selected {
+  border-color:
+    var(--gold);
+
+  box-shadow:
+    0 0 0 2px
+    rgba(245,197,66,.18);
+}
+
+
+/* =========================================================
+   HOME
+========================================================= */
+
+.home {
+  min-height:
+    100vh;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  padding:
+    20px;
+}
+
+.home-card {
+  width:
+    min(460px,100%);
+
+  background:
+    var(--panel);
+
+  border:
+    1px solid var(--border);
+
+  border-radius:
+    20px;
+
+  padding:
+    30px;
+
+  box-shadow:
+    0 20px 70px
+    rgba(0,0,0,.35);
+}
+
+.home-card h1 {
+  text-align:
+    center;
+
+  margin-top:
+    0;
+}
+
+.home-card input {
+  width:
+    100%;
+
+  padding:
+    13px;
+
+  margin:
+    7px 0;
+
+  background:
+    #091728;
+
+  color:
+    white;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:
+    9px;
+
+  outline:
+    none;
+}
+
+.home-card input:focus {
+  border-color:
+    var(--gold);
+}
+
+.home-actions {
+  display:
+    grid;
+
+  gap:
+    10px;
+
+  margin-top:
+    12px;
+}
+
+
+/* =========================================================
+   LOBBY
+========================================================= */
+
+.lobby {
+  max-width:
+    1050px;
+
+  margin:
+    auto;
+
+  padding:
+    25px;
+}
+
+.lobby-card {
+  background:
+    var(--panel);
+
+  border:
+    1px solid var(--border);
+
+  border-radius:
+    18px;
+
+  padding:
+    22px;
+}
+
+.players {
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(220px,1fr)
+    );
+
+  gap:
+    10px;
+}
+
+.player {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    12px;
+
+  padding:
+    12px;
+
+  background:
+    #101f33;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:
+    12px;
+}
+
+.avatar {
+  font-size:
+    28px;
+}
+
+.player small {
+  display:
+    block;
+
+  color:
+    var(--muted);
+
+  margin-top:
+    3px;
+}
+
+.config {
+  display:
+    flex;
+
+  gap:
+    10px;
+
+  flex-wrap:
+    wrap;
+
+  margin:
+    18px 0;
+}
+
+
+/* =========================================================
+   PARTE SUPERIOR DEL JUEGO
+========================================================= */
+
+.game-top {
+  position:
+    relative;
+
+  z-index:
+    20;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  gap:
+    10px;
+
+  padding:
+    8px 14px;
+
+  background:
+    #081526;
+
+  border-bottom:
+    1px solid var(--border);
+}
+
+.top-actions {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    6px;
+}
+
+.game-exit-btn {
+  background:
+    #7f1d1d;
+
+  border-color:
+    #ef4444;
+}
+
+
+/* =========================================================
+   MARCADOR
+========================================================= */
+
+.score {
+  display:
+    flex;
+
+  justify-content:
+    center;
+
+  align-items:
+    center;
+
+  gap:
+    8px;
+
+  padding:
+    8px;
+}
+
+.score-item {
+  min-width:
+    130px;
+
+  padding:
+    8px 18px;
+
+  text-align:
+    center;
+
+  background:
+    #101f33;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:
+    12px;
+}
+
+.score-item small {
+  display:
+    block;
+
+  color:
+    var(--muted);
+}
+
+.score-item b {
+  display:
+    block;
+
+  color:
+    var(--gold);
+
+  font-size:
+    28px;
+}
+
+.score-vs {
+  font-weight:
+    800;
+
+  color:
+    var(--muted);
+}
+
+
+/* =========================================================
+   JUGADORES ALREDEDOR DE LA MESA
+========================================================= */
+
+.table-area {
+  position:
+    relative;
+
+  width:
+    calc(100% - 28px);
+
+  max-width:
+    1500px;
+
+  margin:
+    auto;
+
+  min-height:
+    770px;
+
+  padding:
+    0 10px;
+}
+
+.seats {
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  pointer-events:
+    none;
+
+  z-index:
+    10;
+}
+
+.seat {
+  position:
+    absolute;
+
+  background:
+    #101f33;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:
+    16px;
+
+  padding:
+    10px;
+
+  text-align:
+    center;
+
+  min-width:
+    180px;
+
+  transition:
+    .2s ease;
+}
+
+.seat.active {
+  border-color:
+    var(--gold);
+
+  box-shadow:
+    0 0 15px
+    rgba(245,197,66,.4);
+}
+
+.seat.left {
+  left:
+    0;
+
+  top:
+    180px;
+}
+
+.seat.right {
+  right:
+    0;
+
+  top:
+    180px;
+}
+
+.seat.top {
+  left:
+    50%;
+
+  transform:
+    translateX(-50%);
+
+  top:
+    0;
+
+  width:
+    min(70%,800px);
+}
+
+.seat.self {
+  left:
+    50%;
+
+  transform:
+    translateX(-50%);
+
+  bottom:
+    0;
+
+  width:
+    min(70%,800px);
+}
+
+.seat-icon {
+  font-size:
+    28px;
+}
+
+.seat-name {
+  font-weight:
+    800;
+
+  margin:
+    3px 0;
+}
+
+.seat small {
+  color:
+    var(--muted);
+}
+
+
+/* =========================================================
+   ÁREA DE MESA
+========================================================= */
+
+.table-wrap {
+  position:
+    absolute;
+
+  left:
+    50%;
+
+  top:
+    155px;
+
+  transform:
+    translateX(-50%);
+
+  width:
+    calc(100% - 350px);
+
+  min-width:
+    600px;
+
+  height:
+    430px;
+
+  background:
+    #0c1d30;
+
+  border:
+    1px solid #29425f;
+
+  border-radius:
+    26px;
+
+  overflow:
+    auto;
+
+  display:
+    flex;
+
+  justify-content:
+    center;
+
+  align-items:
+    center;
+
+  scrollbar-width:
+    thin;
+}
+
+
+/* =========================================================
+   TABLERO
+========================================================= */
+
+#board {
+  position:
+    relative;
+
+  flex:
+    0 0 auto;
+
+  margin:
+    0 auto;
+
+  min-width:
+    720px;
+
+  min-height:
+    300px;
+}
+
+
+/*
+   Mensaje cuando no hay fichas.
+*/
+
+#empty {
+  position:
+    absolute;
+
+  left:
+    50%;
+
+  top:
+    50%;
+
+  transform:
+    translate(
+      -50%,
+      -50%
+    );
+
+  color:
+    var(--muted);
+}
+
+
+/* =========================================================
+   FICHAS
+========================================================= */
+
+.domino {
+  position:
+    relative;
+
+  width:
+    46px;
+
+  height:
+    76px;
+
+  background:
+    #f4efe1;
+
+  border:
+    2px solid #171717;
+
+  border-radius:
+    6px;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  box-shadow:
+    0 4px 9px
+    rgba(0,0,0,.35);
+
+  overflow:
+    hidden;
+}
+
+
+.domino.double {
+  /*
+     El tamaño sigue siendo el mismo.
+     La orientación se controla desde
+     board-piece.
+  */
+}
+
+
+.half {
+  width:
+    100%;
+
+  height:
+    50%;
+
+  position:
+    relative;
+
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  grid-template-rows:
+    repeat(3,1fr);
+
+  padding:
+    4px;
+}
+
+
+.divider {
+  width:
+    100%;
+
+  height:
+    2px;
+
+  background:
+    #202020;
+
+  flex:
+    0 0 2px;
+}
+
+
+.pip {
+  width:
+    7px;
+
+  height:
+    7px;
+
+  border-radius:
+    50%;
+
+  align-self:
+    center;
+
+  justify-self:
+    center;
+
+  box-shadow:
+    0 1px 1px
+    rgba(0,0,0,.25);
+}
+
+
+/* =========================================================
+   COLORES FIJOS DE NÚMEROS
+========================================================= */
+
+.pip-0 {
+  background:
+    var(--number-0);
+}
+
+.pip-1 {
+  background:
+    var(--number-1);
+}
+
+.pip-2 {
+  background:
+    var(--number-2);
+}
+
+.pip-3 {
+  background:
+    var(--number-3);
+}
+
+.pip-4 {
+  background:
+    var(--number-4);
+}
+
+.pip-5 {
+  background:
+    var(--number-5);
+}
+
+.pip-6 {
+  background:
+    var(--number-6);
+}
+
+.pip-7 {
+  background:
+    var(--number-7);
+}
+
+.pip-8 {
+  background:
+    var(--number-8);
+}
+
+.pip-9 {
+  background:
+    var(--number-9);
+}
+
+
+/* =========================================================
+   FICHAS EN EL TABLERO
+========================================================= */
+
+.board-piece {
+  position:
+    absolute;
+
+  width:
+    46px;
+
+  height:
+    76px;
+
+  z-index:
+    3;
+
+  transform-origin:
+    center center;
+
+  transition:
+    left .25s ease,
+    top .25s ease,
+    transform .25s ease;
+}
+
+
+/*
+   Los dobles se giran 90 grados.
+
+   De esta manera quedan perpendiculares
+   a la cadena, como en un dominó físico.
+*/
+
+.board-piece.double {
+  width:
+    76px;
+
+  height:
+    46px;
+}
+
+
+.board-piece.double .domino {
+  width:
+    76px;
+
+  height:
+    46px;
+
+  flex-direction:
+    row;
+}
+
+
+.board-piece.double .half {
+  width:
+    50%;
+
+  height:
+    100%;
+}
+
+
+.board-piece.double .divider {
+  width:
+    2px;
+
+  height:
+    100%;
+}
+
+
+/*
+   Ficha con la que comenzó la mano.
+*/
+
+.starter-piece {
+  z-index:
+    15;
+
+  filter:
+    drop-shadow(
+      0 0 7px
+      rgba(245,197,66,.9)
+    );
+}
+
+.starter-piece .domino {
+  border-color:
+    var(--gold);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(245,197,66,.2);
+}
+
+
+/* =========================================================
+   MANO
+========================================================= */
+
+.hand-title {
+  display:
+    flex;
+
+  justify-content:
+    space-between;
+
+  align-items:
+    center;
+
+  padding:
+    0 12px;
+}
+
+.hand {
+  display:
+    flex;
+
+  justify-content:
+    center;
+
+  align-items:
+    flex-end;
+
+  gap:
+    8px;
+
+  min-height:
+    115px;
+
+  padding:
+    10px;
+
+  overflow-x:
+    auto;
+}
+
+
+.hand-tile {
+  padding:
+    0;
+
+  background:
+    transparent;
+
+  border:
+    0;
+
+  flex:
+    0 0 auto;
+
+  transform-origin:
+    bottom center;
+}
+
+
+.hand-tile .domino {
+  transition:
+    .15s ease;
+}
+
+
+.hand-tile:hover:not(:disabled) .domino {
+  transform:
+    translateY(-10px);
+
+  box-shadow:
+    0 10px 20px
+    rgba(0,0,0,.45);
+}
+
+
+.starter-select:not(:disabled) .domino {
+  border-color:
+    var(--gold);
+
+  box-shadow:
+    0 0 12px
+    rgba(245,197,66,.7);
+}
+
+
+/* =========================================================
+   MODAL EXTREMOS
+========================================================= */
+
+.modal {
+  position:
+    fixed;
+
+  inset:
+    0;
+
+  z-index:
+    100;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  background:
+    rgba(0,0,0,.7);
+
+  backdrop-filter:
+    blur(5px);
+
+  padding:
+    20px;
+}
+
+.modal.hidden {
+  display:
+    none;
+}
+
+.modal-card {
+  width:
+    min(500px,100%);
+
+  background:
+    var(--panel);
+
+  border:
+    1px solid var(--border);
+
+  border-radius:
+    18px;
+
+  padding:
+    25px;
+
+  text-align:
+    center;
+}
+
+
+/*
+   Selector de extremo.
+
+   Muestra claramente:
+
+       IZQUIERDA  8
+
+   o
+
+       DERECHA    7
+*/
+
+.side-choices {
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:
+    15px;
+
+  margin:
+    20px 0;
+}
+
+
+.side-choice {
+  min-height:
+    120px;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  gap:
+    8px;
+
+  border:
+    2px solid var(--border);
+
+  background:
+    #101f33;
+}
+
+
+.side-choice:hover {
+  border-color:
+    var(--gold);
+}
+
+
+.side-choice strong {
+  font-size:
+    15px;
+}
+
+
+.side-choice span {
+  font-size:
+    36px;
+
+  font-weight:
+    900;
+
+  color:
+    var(--gold);
+}
+
+
+/* =========================================================
+   ADMIN
+========================================================= */
+
+.admin-room {
+  background:
+    #0c1d30;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:
+    12px;
+
+  padding:
+    14px;
+
+  margin:
+    10px 0;
+}
+
+.admin-player {
+  display:
+    grid;
+
+  grid-template-columns:
+    1fr auto auto;
+
+  gap:
+    7px;
+
+  margin:
+    7px 0;
+}
+
+.admin-player input,
+.admin-player select,
+.admin-room select {
+  background:
+    #071424;
+
+  color:
+    white;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:
+    7px;
+
+  padding:
+    8px;
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+#toast {
+  position:
+    fixed;
+
+  bottom:
+    20px;
+
+  left:
+    50%;
+
+  transform:
+    translate(
+      -50%,
+      30px
+    );
+
+  opacity:
+    0;
+
+  pointer-events:
+    none;
+
+  z-index:
+    500;
+
+  background:
+    #172b43;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:
+    10px;
+
+  padding:
+    11px 17px;
+
+  transition:
+    .2s ease;
+}
+
+#toast.show {
+  opacity:
+    1;
+
+  transform:
+    translate(
+      -50%,
+      0
+    );
+}
+
+
+/* =========================================================
+   BANNER
+========================================================= */
+
+#starterBanner {
+  width:
+    fit-content;
+
+  max-width:
+    calc(100% - 20px);
+
+  margin:
+    8px auto;
+
+  padding:
+    8px 14px;
+
+  background:
+    #332a08;
+
+  border:
+    1px solid var(--gold);
+
+  border-radius:
+    10px;
+
+  color:
+    #ffe58a;
+
+  text-align:
+    center;
+}
+
+.hidden {
+  display:
+    none !important;
+}
+
+
+/* =========================================================
+   MÓVIL
+========================================================= */
+
+@media (
+  max-width:900px
+) {
+
+  .table-area {
+    min-height:
+      650px;
+  }
+
+
+  .table-wrap {
+    width:
+      calc(100% - 160px);
+
+    min-width:
+      500px;
+
+    height:
+      390px;
+
+    top:
+      130px;
+  }
+
+
+  .seat {
+    min-width:
+      130px;
+
+    padding:
+      7px;
+  }
+
+
+  .seat.left,
+  .seat.right {
+    top:
+      150px;
+  }
+
+
+  .seat.self,
+  .seat.top {
+    width:
+      55%;
+  }
+}
+
+
+@media (
+  max-width:650px
+) {
+
+  .game-top {
+    padding:
+      5px;
+
+    font-size:
+      12px;
+  }
+
+
+  .score-item {
+    min-width:
+      80px;
+
+    padding:
+      5px;
+  }
+
+
+  .score-item b {
+    font-size:
+      20px;
+  }
+
+
+  .table-area {
+    width:
+      100%;
+
+    min-height:
+      600px;
+  }
+
+
+  .table-wrap {
+    left:
+      50%;
+
+    width:
+      calc(100% - 90px);
+
+    min-width:
+      0;
+
+    height:
+      360px;
+
+    top:
+      115px;
+
+    border-radius:
+      18px;
+  }
+
+
+  .seat {
+    min-width:
+      90px;
+
+    font-size:
+      11px;
+  }
+
+
+  .seat-icon {
+    font-size:
+      20px;
+  }
+
+
+  .seat.left {
+    left:
+      2px;
+
+    top:
+      145px;
+  }
+
+
+  .seat.right {
+    right:
+      2px;
+
+    top:
+      145px;
+  }
+
+
+  .seat.top {
+    top:
+      2px;
+
+    width:
+      45%;
+  }
+
+
+  .seat.self {
+    bottom:
+      0;
+
+    width:
+      45%;
+  }
+
+
+  .side-choices {
+    grid-template-columns:
+      1fr;
+  }
+}
+
+
+/* =========================================================
+   TELÉFONO HORIZONTAL
+========================================================= */
+
+@media (
+  orientation:landscape
+) and (
+  max-height:600px
+) {
+
+  .table-area {
+    min-height:
+      430px;
+  }
+
+
+  .table-wrap {
+    top:
+      75px;
+
+    height:
+      270px;
+
+    width:
+      calc(100% - 300px);
+  }
+
+
+  .seat.left,
+  .seat.right {
+    top:
+      80px;
+  }
+
+
+  .seat.top {
+    width:
+      40%;
+
+    padding:
+      5px;
+  }
+
+
+  .seat.self {
+    width:
+      40%;
+
+    padding:
+      5px;
+  }
+
+
+  .hand {
+    min-height:
+      90px;
+  }
+
+
+  .hand-tile .domino {
+    transform:
+      scale(.8);
+  }
+}
+
+/* =========================================================
+   UI FINAL — ALINEADO CON EL HTML ACTUAL
+========================================================= */
+
+#home {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  position: relative;
+  background:
+    radial-gradient(circle at 50% 15%, rgba(38, 88, 140, .22), transparent 38%),
+    linear-gradient(180deg, #071426 0%, #040b14 100%);
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.brand {
+  font-size: clamp(34px, 7vw, 64px);
+  font-weight: 950;
+  letter-spacing: .08em;
+}
+
+.brand span {
+  color: var(--gold);
+}
+
+.hero p {
+  margin: 8px 0 0;
+  color: var(--muted);
+}
+
+#home > .login-card {
+  width: min(440px, 100%);
+  background: rgba(14, 29, 48, .96);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 24px;
+  box-shadow: 0 24px 80px rgba(0,0,0,.38);
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 14px 45px rgba(0,0,0,.18);
+}
+
+.card + .card {
+  margin-top: 14px;
+}
+
+.login-card label,
+.setting-title {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 7px;
+}
+
+.login-card input,
+#code,
+#adminPassword {
+  width: 100%;
+  padding: 13px 14px;
+  background: #091728;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  outline: none;
+}
+
+.login-card input:focus,
+#code:focus,
+#adminPassword:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(245,197,66,.10);
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.primary {
+  background: linear-gradient(180deg, #e6b92f, #b98513);
+  color: #15110a;
+  border-color: #f5c542;
+  font-weight: 900;
+}
+
+.primary:hover:not(:disabled) {
+  background: linear-gradient(180deg, #f5c542, #d69e1d);
+}
+
+.secondary {
+  background: #14263d;
+}
+
+.wide {
+  width: 100%;
+}
+
+#joinBox {
+  margin-top: 14px;
+}
+
+#joinBox .primary {
+  margin-top: 8px;
+}
+
+.admin-corner {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  z-index: 5;
+  opacity: .78;
+  font-size: 12px;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 14px;
+  background: rgba(8, 21, 38, .98);
+  border-bottom: 1px solid var(--border);
+}
+
+#lobby {
+  width: min(900px, 100%);
+  margin: 0 auto;
+  padding-bottom: 30px;
+}
+
+#lobby > .card {
+  margin: 14px;
+}
+
+#lobby h2 {
+  margin: 0 0 14px;
+}
+
+.variants {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 8px 0 18px;
+}
+
+.variants button {
+  min-height: 62px;
+  font-weight: 800;
+}
+
+.variants button small {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.setting-title:not(:first-child) {
+  margin-top: 12px;
+}
+
+#game {
+  position: relative;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: #06101e;
+}
+
+#game .table-wrap {
+  z-index: 1;
+}
+
+#game .seats {
+  z-index: 10;
+}
+
+#board {
+  min-width: 0;
+}
+
+.handtitle {
+  position: fixed;
+  z-index: 25;
+  left: 50%;
+  bottom: 132px;
+  transform: translateX(-50%);
+  color: var(--text);
+  font-weight: 800;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.handtitle small {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+#game > .hand {
+  position: fixed;
+  z-index: 25;
+  left: 50%;
+  bottom: 8px;
+  transform: translateX(-50%);
+  width: min(96vw, 900px);
+  min-height: 108px;
+  max-height: 125px;
+  background: rgba(8, 21, 38, .90);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 10px 12px;
+  box-shadow: 0 14px 45px rgba(0,0,0,.28);
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+#game .hand-tile .domino {
+  width: 44px;
+  height: 72px;
+}
+
+#game .hand-tile .pip {
+  width: 6px;
+  height: 6px;
+}
+
+#game .seat {
+  z-index: 12;
+}
+
+#game .score {
+  position: fixed;
+  z-index: 30;
+  left: 50%;
+  top: 54px;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: calc(100vw - 20px);
+  background: rgba(6,16,30,.78);
+  border-radius: 14px;
+  backdrop-filter: blur(8px);
+}
+
+#game .table-wrap {
+  top: 145px;
+  height: min(52vh, 450px);
+  min-height: 300px;
+}
+
+#game .board-piece {
+  transform-origin: center;
+}
+
+#game .domino {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#starterBanner {
+  position: fixed;
+  z-index: 35;
+  left: 50%;
+  top: 104px;
+  transform: translateX(-50%);
+  margin: 0;
+}
+
+.game-exit-btn {
+  color: #fff;
+}
+
+/* Estado de conexión y turno más evidente */
+.seat:not(.active) {
+  opacity: .92;
+}
+
+.seat.active {
+  animation: turnPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes turnPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245,197,66,.12); }
+  50% { box-shadow: 0 0 18px 3px rgba(245,197,66,.34); }
+}
+
+@media (max-width: 700px) {
+  #home {
+    padding: 16px;
+  }
+
+  .admin-corner {
+    right: 10px;
+    top: 10px;
+  }
+
+  .hero {
+    margin-top: 24px;
+  }
+
+  .brand {
+    font-size: 38px;
+  }
+
+  #lobby > .card {
+    margin: 10px;
+    padding: 15px;
+  }
+
+  .variants {
+    gap: 8px;
+  }
+
+  .variants button {
+    padding: 9px 7px;
+    font-size: 13px;
+  }
+
+  #game .game-top {
+    min-height: 44px;
+  }
+
+  #game .score {
+    top: 48px;
+    gap: 4px;
+  }
+
+  #game .score-item {
+    min-width: 72px;
+    padding: 5px 8px;
+  }
+
+  #game .score-item b {
+    font-size: 18px;
+  }
+
+  #game .table-wrap {
+    top: 112px;
+    width: calc(100vw - 20px);
+    min-width: 0;
+    height: 43vh;
+    min-height: 250px;
+    border-radius: 18px;
+  }
+
+  #game .seat {
+    min-width: 76px;
+    max-width: 31vw;
+    padding: 6px 5px;
+    border-radius: 12px;
+    font-size: 11px;
+  }
+
+  #game .seat.left,
+  #game .seat.right {
+    top: 185px;
+  }
+
+  #game .seat.left { left: 2px; }
+  #game .seat.right { right: 2px; }
+
+  #game .seat.top {
+    top: 4px;
+    width: 36%;
+  }
+
+  #game .seat.self {
+    bottom: 136px;
+    width: 42%;
+  }
+
+  #game .seat-icon {
+    font-size: 18px;
+  }
+
+  #starterBanner {
+    top: 88px;
+    font-size: 12px;
+    max-width: calc(100vw - 28px);
+  }
+
+  .handtitle {
+    bottom: 116px;
+    font-size: 13px;
+  }
+
+  #game > .hand {
+    bottom: 4px;
+    width: calc(100vw - 12px);
+    min-height: 102px;
+    max-height: 108px;
+    border-radius: 14px;
+    gap: 5px;
+  }
+
+  #game .hand-tile .domino {
+    width: 40px;
+    height: 66px;
+  }
+
+  #game .hand-tile .pip {
+    width: 5px;
+    height: 5px;
+  }
+
+  #game .game-exit-btn {
+    padding: 7px 9px;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 650px) {
+  #game .table-wrap {
+    top: 76px;
+    height: calc(100vh - 178px);
+    min-height: 220px;
+    width: calc(100vw - 190px);
+  }
+
+  #game .score {
+    top: 45px;
+  }
+
+  #game .seat.left,
+  #game .seat.right {
+    top: 100px;
+  }
+
+  #game .seat.top {
+    top: 46px;
+    width: 28%;
+  }
+
+  #game .seat.self {
+    bottom: 112px;
+    width: 28%;
+  }
+
+  #game > .hand {
+    bottom: 4px;
+    min-height: 94px;
+    max-height: 98px;
+  }
+
+  .handtitle {
+    bottom: 101px;
+  }
+
+  #starterBanner {
+    top: 72px;
+  }
+}
