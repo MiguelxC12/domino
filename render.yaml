@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: domino-cubano
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: "22"
+      # Define aquí tu contraseña de administrador en el panel de Render
+      # (Environment > ADMIN_PASSWORD). No la escribas en el repositorio.
+      - key: ADMIN_PASSWORD
+        sync: false
