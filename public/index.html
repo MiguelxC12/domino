@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#06101e">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Dominó Cubano">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<title>Dominó Cubano</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<main>
+
+<!-- ===== INICIO ===== -->
+<section id="home" class="screen active">
+  <button id="adminBtn" class="corner-btn" aria-label="Administrador">⚙ Admin</button>
+  <div class="hero">
+    <div class="brand">DOMINÓ <span>CUBANO</span></div>
+    <p>2 a 4 jugadores · equipos o individual · primero a 100</p>
+  </div>
+  <div class="card login-card">
+    <label for="name">Tu nombre</label>
+    <input id="name" maxlength="18" placeholder="Ej. Miguel" autocomplete="nickname" enterkeyhint="done">
+    <div class="actions">
+      <button id="create" class="primary">Crear sala</button>
+      <button id="toggleJoin" class="secondary">Unirse</button>
+    </div>
+    <div id="joinBox" class="hidden">
+      <label for="code">Código de sala</label>
+      <input id="code" maxlength="5" placeholder="ABCDE" autocapitalize="characters" autocomplete="off" spellcheck="false">
+      <button id="join" class="primary wide">Entrar</button>
+    </div>
+  </div>
+  <p id="homeStatus" class="home-status"></p>
+</section>
+
+<!-- ===== SALA DE ESPERA ===== -->
+<section id="lobby" class="screen">
+  <div class="top">
+    <button id="back" aria-label="Salir de la sala">← Salir</button>
+    <b>SALA <span id="lcode"></span></b>
+    <button id="copy">Compartir</button>
+  </div>
+  <div class="card">
+    <h2>Jugadores <span id="count"></span></h2>
+    <div id="players"></div>
+  </div>
+  <div class="card spec-card">
+    <h2>Espectadores <span id="scount"></span> <small id="specHint"></small></h2>
+    <div id="spectators"></div>
+  </div>
+  <div class="card">
+    <h2>Configuración <small id="cfgHint"></small></h2>
+    <div class="setting-title">Modo</div>
+    <div class="variants">
+      <button data-mode="team">👥 Equipos<br><small>parejas frente a frente</small></button>
+      <button data-mode="individual">🧑 Individual<br><small>cada uno por sí mismo</small></button>
+    </div>
+    <div class="setting-title">Fichas</div>
+    <div class="variants">
+      <button data-v="6">Doble-6<br><small>28 fichas · 7 cada uno</small></button>
+      <button data-v="9">Doble-9<br><small>55 fichas · 10 cada uno</small></button>
+    </div>
+    <div class="setting-title">Capicúa <small>(gana con una ficha que encaja en los dos extremos: bonus)</small></div>
+    <div class="variants">
+      <button data-capicua="1">Sí<br><small>+<span id="capBonus">30</span> puntos</small></button>
+      <button data-capicua="0">No<br><small>sin bonus</small></button>
+    </div>
+    <button id="start" class="primary wide">Comenzar partida</button>
+    <p id="startHint" class="hint"></p>
+  </div>
+</section>
+
+<!-- ===== PARTIDA ===== -->
+<section id="game" class="screen">
+  <header class="game-top">
+    <div class="room-chip"><span class="lbl">SALA </span><b id="gcode"></b></div>
+    <div id="score" class="score"></div>
+    <div class="top-actions">
+      <button id="landscape" title="Pantalla completa / horizontal" aria-label="Pantalla completa">⛶</button>
+      <button id="sound" title="Sonido" aria-label="Sonido">🔊</button>
+      <button id="gameAdmin" title="Administrador" aria-label="Administrador">⚙</button>
+      <button id="leaveGame" class="game-exit-btn">Salir</button>
+    </div>
+  </header>
+
+  <div id="status" class="status"><span id="statusText"></span><b id="clock" class="clock"></b></div>
+
+  <div class="table" id="table">
+    <div id="seats" class="seats"></div>
+    <div id="boardArea" class="board-area">
+      <div id="board" class="board"></div>
+      <span id="empty" class="empty">La mesa está vacía</span>
+    </div>
+    <div id="ends" class="ends"></div>
+  </div>
+
+  <div id="handbar" class="handbar">
+    <div class="handtitle">
+      <div id="meSeat" class="me-seat"></div>
+      <div class="hand-tools">
+        <small id="hc"></small>
+        <button id="organize" class="tool-btn" aria-pressed="false">↔ Organizar</button>
+      </div>
+    </div>
+    <div id="organizeHint" class="organize-hint hidden">Arrastra para mover · toca una ficha para girarla</div>
+    <div id="hand" class="hand"></div>
+  </div>
+
+  <div id="specbar" class="specbar hidden">
+    <div id="specTitle" class="spec-title"></div>
+    <div id="godHands" class="god-hands"></div>
+  </div>
+</section>
+
+<!-- ===== VENTANAS ===== -->
+<div id="sideModal" class="modal hidden">
+  <div class="modalcard choice-card">
+    <h2>¿Dónde la colocas?</h2>
+    <p>La ficha encaja en los dos extremos.</p>
+    <div id="sideChoices" class="side-choices"></div>
+    <button id="cancelChoice" class="secondary wide">Cancelar</button>
+  </div>
+</div>
+
+<div id="modal" class="modal hidden">
+  <div class="modalcard result-card">
+    <div id="icon">🏆</div>
+    <img id="resultImg" class="result-img hidden" alt="">
+    <h2 id="mtitle"></h2>
+    <p id="mtext"></p>
+    <b id="mscore"></b>
+    <div id="mtotals" class="mtotals"></div>
+    <div id="mhands" class="mhands"></div>
+    <button id="next" class="primary wide">Siguiente mano</button>
+    <button id="again" class="primary wide hidden">Nueva partida</button>
+    <button id="toLobby" class="secondary wide hidden">Volver a la sala</button>
+    <p id="waitText" class="hint hidden"></p>
+  </div>
+</div>
+
+<div id="adminModal" class="modal hidden">
+  <div class="modalcard admin-card">
+    <div class="admin-head"><h2>Administrador</h2><button id="closeAdmin" aria-label="Cerrar">✕</button></div>
+    <div id="adminLogin">
+      <p>Introduce la contraseña de administrador.</p>
+      <input id="adminPassword" type="password" autocomplete="off">
+      <button id="adminLoginBtn" class="primary wide">Entrar</button>
+    </div>
+    <div id="adminPanel" class="hidden">
+      <div class="theme-box">
+        <h3>Apariencia (la ven y oyen todos)</h3>
+        <div id="themeRows"></div>
+        <label for="bgDim">Oscurecer la foto de fondo: <b id="bgDimVal"></b></label>
+        <input id="bgDim" type="range" min="0" max="80" step="5">
+        <div class="setting-title">Cuándo se usan los sonidos e imágenes de ganar/perder</div>
+        <div class="variants">
+          <button data-when="hand">Cada mano<br><small>y al final</small></button>
+          <button data-when="match">Solo al final<br><small>de la partida</small></button>
+        </div>
+        <p id="themeNote" class="hint left"></p>
+      </div>
+      <div id="adminRooms"></div>
+    </div>
+  </div>
+</div>
+
+<div id="banner" class="banner hidden"></div>
+<div id="conn" class="conn hidden">Sin conexión. Reconectando…</div>
+<div id="toast" role="status" aria-live="polite"></div>
+</main>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>

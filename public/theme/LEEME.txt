@@ -1,0 +1,18 @@
+FONDO, IMÁGENES Y SONIDOS FIJOS (opcional)
+
+Si pones aquí estos archivos y los subes a GitHub, todos los jugadores
+los verán y oirán SIEMPRE, aunque Render se reinicie:
+
+  fondo.jpg      (o .png/.webp)        foto de fondo de la mesa
+  ganador.jpg    (o .png/.webp/.gif)   imagen que ven los ganadores
+  perdedor.jpg   (o .png/.webp/.gif)   imagen que ven los perdedores
+  ganar.mp3      (o .wav/.ogg/.m4a)    sonido cuando un equipo gana
+  perder.mp3     (o .wav/.ogg/.m4a)    sonido cuando un equipo pierde
+  pase.mp3       (o .wav/.ogg/.m4a)    sonido cuando alguien pasa
+  capicua.mp3    (o .wav/.ogg/.m4a)    sonido de capicúa
+
+También puedes cambiarlos desde el panel de administrador sin tocar el código;
+lo que subas por el panel tiene prioridad, pero en el plan gratis de Render
+se borra cuando el servicio se reinicia.
+
+Consejo: imágenes de menos de 1 MB y sonidos de pocos segundos.
