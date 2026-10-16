@@ -852,7 +852,7 @@ function drink(room, playerId) {
 }
 
 /* ---------- galletaso: un golpe con la mano abierta, una vez por minuto ---------- */
-const SLAP_COOLDOWN_MS = 60000;
+const SLAP_COOLDOWN_MS = 30000;
 
 function slapIn(room, id) {
   return Math.max(0, SLAP_COOLDOWN_MS - (Date.now() - ((room.lastSlap && room.lastSlap[id]) || 0)));
